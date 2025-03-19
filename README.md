@@ -1,139 +1,128 @@
-Here’s a **detailed description** of the **frontend prototype** for developers to build this app.  
+Here’s a **text-based wireframe** that a designer can use to create the prototype. It describes each screen’s structure, layout, and navigation flow.  
 
 ---
 
-# **Bilingual Learning App – Frontend Development Guide**  
-### **Tech Stack Recommendation**  
-- **Framework**: React Native (for cross-platform mobile development)  
-- **State Management**: Redux / Zustand (for managing user data and settings)  
-- **Navigation**: React Navigation  
-- **UI Library**: NativeBase / ShadCN / Custom Components  
-- **Audio/Video Handling**: `react-native-video`, `react-native-track-player`  
-- **Storage**: AsyncStorage / SQLite (for local bookmarks, vocabulary, and saved progress)  
-- **API Calls**: Axios or Fetch API  
+# **Bilingual Learning App – Wireframe Description**  
+
+## **1. Home Screen (`/home`)**  
+**Structure:**  
+- **Header (Top Bar)**  
+  - [Left] App Logo  
+  - [Center] Search Bar (🔍)  
+  - [Right] User Profile Icon (👤)  
+
+- **Main Content (Scrollable Categories List)**  
+  - **Category Card (📖 Bilingual Reading)**  
+  - **Category Card (🎙️ Podcasts)**  
+  - **Category Card (📚 Books & Stories)**  
+  - **Category Card (📺 Videos)**  
+  - **Category Card (🎓 Video Courses)**  
+
+- **Bottom Navigation (Persistent Tabs)**  
+  - [🏠] Home  
+  - [📂] My Library  
+  - [📈] Learning Progress  
+  - [⚙️] Settings  
 
 ---
 
-## **1. App Structure & Routing**  
-### **Navigation Flow**  
-- **Main Navigation**: Bottom Tab Navigation  
-- **Stack Navigation**: Inside each main tab for subpages  
-
-#### **Main Screens** (Bottom Tabs)  
-1. **Home Screen (`/home`)** – Displays all main categories  
-2. **Library (`/library`)** – User’s saved books, podcasts, videos  
-3. **Learning (`/learning`)** – Progress tracking, bookmarked words  
-4. **Settings (`/settings`)** – Language, appearance, user preferences  
-
-#### **Sub-Screens & Features**  
-- **Bilingual Reading (`/reading/:id`)**  
-- **Podcast Player (`/podcast/:id`)**  
-- **Book Reader (`/book/:id`)**  
-- **Video Player (`/video/:id`)**  
+## **2. Bilingual Reading Screen (`/reading/:id`)**  
+**Structure:**  
+- **Header (Back Button + Title + Bookmark Icon ⭐)**  
+- **Audio Player (🎵 Play/Pause, Seek, Speed Control)**  
+- **Text Display Mode Toggle (🔄 Paragraph | Table View)**  
+- **Bilingual Script Display (Auto-scroll synchronized with audio)**  
+  - [🔘] Toggle Pinyin Above Chinese Characters  
+  - [🖱️] Tap a Word → Popup (Definition + Pinyin)  
+- **Bottom Features (Tabs or Buttons)**  
+  1. **📖 Vocabulary List** (Word breakdown from the article)  
+  2. **📜 Grammar Explanation** (Formatted text content)  
+  3. **🎤 Shadowing Mode** (Record & Playback User's Voice)  
+  4. **✅ Quiz Section** (Multiple-choice questions)  
 
 ---
 
-## **2. UI & Component Breakdown**  
-### **1. Home Screen (`HomeScreen.tsx`)**  
-#### **Components:**  
-- **Header**: App name + Search bar + Profile button  
-- **Category List (`<CategoryCard />`)**  
-  - Displays:  
-    - **Bilingual Reading** (📖)  
-    - **Podcasts** (🎙️)  
-    - **Videos** (📺)  
-    - **Books & Stories** (📚)  
-    - **Video Courses** (🎓)  
-  - Clicking a category navigates to its respective screen  
+## **3. Podcast List (`/podcasts`)**  
+**Structure:**  
+- **Header (🔍 Search + Back Button)**  
+- **Scrollable Podcast Cards**  
+  - Thumbnail + Title + Duration  
+  - Play Button → Opens Podcast Player  
+
+### **Podcast Player (`/podcast/:id`)**  
+- **Header (Back Button + Podcast Title + Save Button)**  
+- **Main Player UI**  
+  - Podcast Cover Image  
+  - 🎵 Play/Pause, Seek, Speed Control  
+- **Transcript Section (Auto-scroll with playback)**  
 
 ---
 
-### **2. Bilingual Reading (`ReadingScreen.tsx`)**  
-#### **Components:**  
-- **Audio Player (`<AudioPlayer />`)**  
-  - Play/Pause, Seek, Speed Control  
-- **Reading Mode Toggle** (Paragraph | Table View)  
-- **Script Display (`<TextHighlight />`)**  
-  - Synchronized text highlighting  
-  - Tap on a Chinese word → Show popup with meaning + pinyin  
-- **PinYin Toggle (`<ToggleButton />`)**  
-- **Bottom Section (4 Features)**
-  1. **Vocabulary List (`<WordList />`)**  
-  2. **Grammar Explanation (`<GrammarSection />`)**  
-  3. **Shadowing (`<Recording />`)** – Record user voice & playback  
-  4. **Quiz (`<Quiz />`)** – Multiple-choice questions  
+## **4. Books & Stories (`/books`)**  
+**Structure:**  
+- **Header (🔍 Search + Filter Button)**  
+- **Book List (Grid or List View)**  
+  - Cover Image + Title + Difficulty Level  
+  - Click → Opens Book Reader  
+
+### **Book Reader (`/book/:id`)**  
+- **Header (Back Button + Bookmark ⭐)**  
+- **Text Content Display**  
+  - [🌙] Light/Dark Mode Toggle  
+  - [🔠] Font Size Adjustment  
+  - [⭐] Save Word Button (Adds word to vocabulary list)  
 
 ---
 
-### **3. Podcast (`PodcastScreen.tsx`)**  
-#### **Components:**  
-- **Podcast List (`<PodcastCard />`)**  
-  - Title, Thumbnail, Duration  
-  - Play button → Opens **Podcast Player**  
-- **Podcast Player (`PodcastPlayer.tsx`)**  
-  - Play/Pause, Seek, Speed Control  
-  - Transcript Display (syncs with audio)  
+## **5. Video List (`/videos`)**  
+**Structure:**  
+- **Header (🔍 Search + Filter Button)**  
+- **Video List (Grid View)**  
+  - Thumbnail + Title + Duration  
+  - Click → Opens Video Player  
 
----
-
-### **4. Books & Stories (`BookScreen.tsx`)**  
-#### **Components:**  
-- **Book List (`<BookCard />`)**  
-  - Thumbnail, Title, Difficulty Level  
-  - Clicking opens **Book Reader**  
-- **Book Reader (`BookReader.tsx`)**  
-  - Dark/Light Mode Toggle  
-  - Font Size Adjustment  
-  - Bookmark Button  
-  - Save Words Button  
-
----
-
-### **5. Video Player (`VideoScreen.tsx`)**  
-#### **Components:**  
-- **Video List (`<VideoCard />`)**  
-  - Thumbnail, Title, Duration  
-  - Clicking opens **Video Player**  
-- **Video Player (`VideoPlayer.tsx`)**  
+### **Video Player (`/video/:id`)**  
+- **Header (Back Button + Save Video Button)**  
+- **Video Playback Controls**  
   - Play/Pause, Seek  
-  - Dual-language subtitles toggle  
-  - Save video button  
+  - Subtitle Toggle (Single-Language | Bilingual)  
 
 ---
 
-## **3. API Integration**  
-### **1. Authentication (if needed)**
-- **Login (`POST /auth/login`)**  
-- **Register (`POST /auth/register`)**  
-- **Get User Data (`GET /user`)**  
-
-### **2. Content Fetching**
-- **Get Bilingual Articles (`GET /articles`)**  
-- **Get Podcasts (`GET /podcasts`)**  
-- **Get Books (`GET /books`)**  
-- **Get Videos (`GET /videos`)**  
-
-### **3. User Data**
-- **Save Progress (`POST /progress`)**  
-- **Save Bookmarks (`POST /bookmarks`)**  
-- **Get Saved Content (`GET /user/library`)**  
+## **6. My Library (`/library`)**  
+**Structure:**  
+- **Header (Title: "My Library")**  
+- **Tab Navigation (Saved Content Categories)**  
+  - 📖 **Saved Bilingual Readings**  
+  - 🎙️ **Saved Podcasts**  
+  - 📚 **Saved Books**  
+  - 📺 **Saved Videos**  
 
 ---
 
-## **4. UI/UX Considerations**  
-- **Dark Mode**: Store preference in AsyncStorage  
-- **Offline Mode**: Allow downloads for offline reading  
-- **Smooth Animations**: Use `react-native-reanimated` for UI transitions  
+## **7. Learning Progress (`/learning`)**  
+**Structure:**  
+- **Header (Title: "Learning Progress")**  
+- **Statistics Display (Graph / Progress Bar)**  
+  - Total Hours Spent  
+  - Vocabulary Words Learned  
+  - Articles Completed  
+  - Quiz Performance  
 
 ---
 
-## **5. Developer Checklist**
-✔️ Implement Navigation  
-✔️ Design & Build Components  
-✔️ Integrate API Calls  
-✔️ Optimize Performance  
-✔️ Implement Offline Support  
+## **8. Settings (`/settings`)**  
+**Structure:**  
+- **Header (Title: "Settings")**  
+- **Toggle Options & Preferences**  
+  - 🌙 Dark Mode  
+  - 🔊 Audio Speed Default  
+  - 🌎 Language Selection  
+  - 🔄 Clear Cache  
 
 ---
 
-This should provide everything needed for the frontend prototype. Let me know if you need adjustments! 🚀
+# **Final Notes for Designer**  
+✅ **This wireframe represents the user flow and page structure**.  
+✅ **Each screen includes necessary UI elements and interactions**.  
+
